@@ -1,0 +1,48 @@
+@border: 1px gray solid;
+
+.cameras-container {
+  max-width: 600px;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.favourite-header {
+  border: @border;
+  min-height: 50px;
+  font-size: 25px;
+  line-height: 50px;
+  padding-left: 10px;
+}
+
+
+.favourite-footer {
+  border: @border;
+  border-top: none;
+  min-height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  .more-button {
+    cursor: pointer;
+    text-decoration: none!important;
+    color: white!important;
+    background: blue;
+    display: block;
+    height:20px;
+    text-align: center;
+    border-radius: 2px;
+    width: 100px;
+  }
+  a {
+    text-decoration: none!important;
+    color: white!important;
+    background: blue;
+    border-radius: 2px;
+    display: block;
+    height:20px;
+    text-align: center;
+    width: 100px;
+  }
+}
