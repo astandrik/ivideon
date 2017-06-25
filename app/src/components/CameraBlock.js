@@ -1,6 +1,20 @@
 import React from "react";
 import "./CameraBlock.less";
 import ReactSVG from "react-svg";
+
+class Camera{
+  constructor(obj) {
+    this.uin = obj.uin;
+    this.misc = {description: obj.description};
+    this.camera_name = obj.camera_name;
+    this.width = obj.width;
+    this.height = obj.height;
+    this.total_views = obj.total_views;
+    this.camera = obj.camera;
+    this.server = obj.server;
+  }
+}
+
 export default class CameraBlock extends React.Component {
   constructor(props) {
     super(props);
@@ -42,8 +56,15 @@ export default class CameraBlock extends React.Component {
   }
   render() {
     let props = this.props;
+    let obj = new Camera(props.obj);
     let imageBlock = null,
-        infoBlock = null;
+        infoBlock = null,
+        starBlock = (<div onClick={this.toggleFavourite.bind(this,obj)}>
+          <ReactSVG
+            path="app/src/Icons/pentagon-made-of-stars.svg"
+            className={"pentagon " + (props.favourited ? "favour" : "non-favour")}
+          /></div>);
+
     if(this.state.error) {
       let imageStyle = {
         width: props.width+"px",
@@ -79,6 +100,7 @@ export default class CameraBlock extends React.Component {
         <div className="info-block">
           <div className="upper">
             <span> {props.name} </span>
+            {starBlock}
           </div>
           <span> {props.description} </span>
           <div className="lower">
@@ -96,12 +118,7 @@ export default class CameraBlock extends React.Component {
         <div className="info-block">
           <div className="upper">
             <span> {props.name} </span>
-            <div onClick={this.toggleFavourite.bind(this, props.uin)}>
-              <ReactSVG
-                path="app/src/Icons/pentagon-made-of-stars.svg"
-                className={"pentagon " + (props.favourited ? "favour" : "non-favour")}
-              />
-            </div>
+            {starBlock}
           </div>
           <div className="lower">
             <span> TOTAL VIEWS: {props.views} </span>

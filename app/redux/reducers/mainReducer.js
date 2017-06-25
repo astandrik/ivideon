@@ -26,7 +26,7 @@ reducer.setSeed = function(state = -1, action) {
   }
 }
 
-reducer.setFavors = function(state = null, action) {
+reducer.setFavors = function(state = '', action) {
   switch (action.type) {
     case SET_FAVORS:
       if(action.favors) {

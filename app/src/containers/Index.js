@@ -56,15 +56,24 @@ class Index extends React.Component {
     let props = this.props;
     let favs = [];
     if(props.favors) {
-      favs = props.favors.split(",").map(Number);
+      favs = props.favors;
     }
     if(props.cameras.length === 0) return null;
-    let cameras = props.cameras.map(x => <CameraBlock isActive={this.state.activeCamera === x.uin}
-      favourited={~favs.indexOf(x.uin)} key={x.uin} favor={this.favor}
+    let cameras = props.cameras.map(x => <CameraBlock
+      isActive={this.state.activeCamera === x.uin}
+      favourited={favs.filter(y => y.uin === x.uin).length ===1 }
+      key={x.uin}
+      favor={this.favor}
+      makeFull={this.makeFull}
+      close={this.closeCamera}
+      description={x.misc.description}
+      camera={x.camera}
+      views={x.total_views}
+      server={x.server}
       uin={x.uin}
-      server={x.server} width={x.width} height={x.height}
-      makeFull={this.makeFull} close={this.closeCamera} description={x.misc.description}
-      camera={x.camera} views={x.total_views} name={x.camera_name}/>);
+      width={x.width} height={x.height}
+      obj={x}
+      name={x.camera_name}/>);
     return <CamerasList cameras={cameras} moreCameras={this.more}/>
   }
 }
