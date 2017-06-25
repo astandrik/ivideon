@@ -1,6 +1,6 @@
 var express = require("express"),
     app = express(),
-    port = 5555,
+    port = 80,
     path = require("path");
 
 app.listen(port, () => {

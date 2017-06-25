@@ -30565,7 +30565,11 @@ reducer.setFavors = function () {
 
   switch (action.type) {
     case __WEBPACK_IMPORTED_MODULE_0__actions_actions__["b" /* SET_FAVORS */]:
-      return action.favors;
+      if (action.favors) {
+        return action.favors;
+      } else {
+        return null;
+      }
       break;
     default:
       return state;
